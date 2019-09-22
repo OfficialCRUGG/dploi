@@ -1,0 +1,28 @@
+{
+  "name": "dploi",
+  "version": "1.0.0",
+  "description": "A utility which can automatically deploy websites, nodeJS Apps etc. from GitHub (Modifying the code is required)",
+  "main": "dploi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blazingrp/dploi.git"
+  },
+  "author": "BlazingRP Staff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blazingrp/dploi/issues"
+  },
+  "homepage": "https://github.com/blazingrp/dploi#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "dateformat": "^3.0.3",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "logg.js": "^1.0.2"
+  }
+}
