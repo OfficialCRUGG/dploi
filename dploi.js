@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
     res.send({status: "error", code: 2, message: "There was no Endpoint specified."});
 });
-router.get("/autoDeploy/:app", (req, res) => {
+app.get("/autoDeploy/:app", (req, res) => {
     res.send({status: "error", code: 2, message: "This is a GET Request, you need to use a POST Request however."});
 });
-router.post("/autoDeploy/:app", (req, res) => {
+app.post("/autoDeploy/:app", (req, res) => {
     services.forEach((service) => {
         if(req.params.app == service.url) {
             let startTime = new Date();
