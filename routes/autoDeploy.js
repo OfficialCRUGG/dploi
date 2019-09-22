@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const log = require("logg.js");
-const services = require("./services.json");
-const commands = require("./commands.json");
+const services = require("../services.json");
+const commands = require("../commands.json");
 const { WebhookClient, RichEmbed } = require("discord.js");
 const { exec } = require('child_process');
 
