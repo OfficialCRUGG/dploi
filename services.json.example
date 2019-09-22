@@ -1,0 +1,11 @@
+[
+    {
+        "name": "myService",
+        "url": "useSomeSafeHere-WithThisURLEveryoneCanDeployYourService",
+        "action": {
+            "type": "pm2",
+            "pm2name": "myService",
+            "directory": "/home/myService/"
+        }
+    }
+]
