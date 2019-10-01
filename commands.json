@@ -1,4 +1,12 @@
 {
-    "pm2": "cd %dir% && git pull && npm i && pm2 restart %pm2name%",
-    "web": "cd %dir% && git pull"
+    "pm2": [
+        "cd ${0}",
+        "git pull",
+        "npm i",
+        "pm2 restart ${1}"
+    ],
+    "web": [
+        "cd ${0}",
+        "git pull"
+    ]
 }
