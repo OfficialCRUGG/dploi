@@ -22,15 +22,15 @@ app.get("/autoDeploy/:app", (req, res) => {
 });
 app.post("/autoDeploy/:app", (req, res) => {
     services.forEach( async (service) => {
-        if (req.params.app  == service.url) {
+        if(req.params.app  == service.url) {
             let startTime = new Date();
-            if (service.webhooks.discord) {
+            if(service.webhooks.discord) {
                 let embed = new RichEmbed()
-                    .setTitle(req.body.repository.full_name)
-                    .setDescription("Deploying `" + req.body.repository.full_name + "`...")
-                    .setFooter(req.body.head_commit.author.username)
-                    .setColor("#FFE100")
-                    .setTimestamp(Date.now());
+                .setTitle(req.body.repository.full_name)
+                .setDescription("Deploying `" + req.body.repository.full_name + "`...")
+                .setFooter(req.body.head_commit.author.username)
+                .setColor("#FFE100")
+                .setTimestamp(Date.now());
                 req.body.commits.forEach((commit) => {
                     embed.addField(commit.id.substring(0, 7), commit.message);
                 });
@@ -41,14 +41,14 @@ app.post("/autoDeploy/:app", (req, res) => {
             let commandsToExec = replace(commands[service.action.type], service.action.variables);
             await commandsToExec.forEach((element) => {
                 exec(element, (error, stdout, stderror) => {
-                    if (error) {
-                        if (service.webhooks.discord) {
+                    if(error) {
+                        if(service.webhooks.discord) {
                             let embed = new RichEmbed()
-                                .setTitle(req.body.repository.full_name)
-                                .setDescription("Error occured whilst deploying `" + req.body.repository.full_name + "`...")
-                                .setFooter(req.body.head_commit.author.username)
-                                .setColor("#FF2929")
-                                .setTimestamp(Date.now());
+                            .setTitle(req.body.repository.full_name)
+                            .setDescription("Error occured whilst deploying `" + req.body.repository.full_name + "`...")
+                            .setFooter(req.body.head_commit.author.username)
+                            .setColor("#FF2929")
+                            .setTimestamp(Date.now());
                             let webhook = new WebhookClient(service.webhooks.discord.split("/")[5], service.webhooks.discord.split("/")[6]);
                             webhook.send(embed);
                             webhook.destroy();
@@ -59,13 +59,13 @@ app.post("/autoDeploy/:app", (req, res) => {
             });
 
             let endTime = new Date();
-            if (service.webhooks.discord) {
+            if(service.webhooks.discord) {
                 let embed = new RichEmbed()
-                    .setTitle(req.body.repository.full_name)
-                    .setDescription("Successfully deployed `" + req.body.repository.full_name + "` in " + (startTime - endTime) + "ms.")
-                    .setFooter(req.body.head_commit.author.username)
-                    .setColor("#87FF44")
-                    .setTimestamp(Date.now());
+                .setTitle(req.body.repository.full_name)
+                .setDescription("Successfully deployed `" + req.body.repository.full_name + "` in " + (startTime - endTime) + "ms.")
+                .setFooter(req.body.head_commit.author.username)
+                .setColor("#87FF44")
+                .setTimestamp(Date.now());
                 let webhook = new WebhookClient(service.webhooks.discord.split("/")[5], service.webhooks.discord.split("/")[6]);
                 webhook.send(embed);
                 webhook.destroy();
